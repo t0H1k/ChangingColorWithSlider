@@ -30,18 +30,18 @@ class ViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func redSliderAction() {
-        redLabel.text = redSlider.value.formatted()
+        redLabel.text = String(format: "%.2f", redSlider.value)
         changeViewBackgroundColor()
     }
     
     @IBAction func greenSliderAction() {
-        greenLabel.text = greenSlider.value.formatted()
+        greenLabel.text = String(format: "%.2f", greenSlider.value)
         changeViewBackgroundColor()
     }
     
     
     @IBAction func blueSliderAction() {
-        blueLabel.text = blueSlider.value.formatted()
+        blueLabel.text = String(format: "%.2f", blueSlider.value)
         changeViewBackgroundColor()
     }
     
@@ -69,6 +69,6 @@ class ViewController: UIViewController {
             alpha: 1
         )
     }
-    
 }
+
 
