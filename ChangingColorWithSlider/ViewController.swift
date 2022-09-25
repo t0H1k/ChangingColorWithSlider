@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         setupRedSlider()
         setupGreenSlider()
         setupBlueSlider()
+        showNameOfUserColor()
     }
 
     // MARK: - IBActions
@@ -57,14 +58,17 @@ class ViewController: UIViewController {
         greenLabel.text = "0.00"
         blueSlider.setValue(0, animated: true)
         blueLabel.text = "0.00"
-        mainView.backgroundColor = .white
-        userColorLabel.text = "Your color is white"
+        mainView.backgroundColor = .black
+        userColorLabel.text = "Your color is black"
     }
     
     @IBAction func randomColorButton() {
-        redSlider.value = Float.random(in: 0.00...1)
-        greenSlider.value = Float.random(in: 0.00...1)
-        blueSlider.value = Float.random(in: 0.00...1)
+        redSlider.setValue(Float.random(in: 0.00...1), animated: true)
+        greenSlider.setValue(Float.random(in: 0.00...1), animated: true)
+        blueSlider.setValue(Float.random(in: 0.00...1), animated: true)
+        redLabel.text = String(format: "%.2f", redSlider.value)
+        greenLabel.text = String(format: "%.2f", greenSlider.value)
+        blueLabel.text = String(format: "%.2f", blueSlider.value)
         changeViewBackgroundColor()
         showNameOfUserColor()
     }
