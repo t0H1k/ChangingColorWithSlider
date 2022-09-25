@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
+    @IBOutlet var userColorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 15
@@ -32,32 +34,52 @@ class ViewController: UIViewController {
     @IBAction func redSliderAction() {
         redLabel.text = String(format: "%.2f", redSlider.value)
         changeViewBackgroundColor()
+        showNameOfUserColor()
     }
     
     @IBAction func greenSliderAction() {
         greenLabel.text = String(format: "%.2f", greenSlider.value)
         changeViewBackgroundColor()
+        showNameOfUserColor()
     }
     
     
     @IBAction func blueSliderAction() {
         blueLabel.text = String(format: "%.2f", blueSlider.value)
         changeViewBackgroundColor()
+        showNameOfUserColor()
     }
+    
+    @IBAction func resetButton() {
+        redSlider.setValue(0, animated: true)
+        redLabel.text = "0.00"
+        greenSlider.setValue(0, animated: true)
+        greenLabel.text = "0.00"
+        blueSlider.setValue(0, animated: true)
+        blueLabel.text = "0.00"
+        mainView.backgroundColor = .white
+        userColorLabel.text = "Your color is white"
+    }
+    
+    @IBAction func randomColorButton() {
+        redSlider.value = Float.random(in: 0.00...1)
+        greenSlider.value = Float.random(in: 0.00...1)
+        blueSlider.value = Float.random(in: 0.00...1)
+        changeViewBackgroundColor()
+        showNameOfUserColor()
+    }
+    
     
     // MARK: - Private methods
     private func setupRedSlider() {
-        redSlider.value = 0.5
         redSlider.minimumTrackTintColor = .systemRed
     }
     
     private func setupGreenSlider() {
-        greenSlider.value = 0.5
         greenSlider.minimumTrackTintColor = .systemGreen
     }
     
     private func setupBlueSlider() {
-        blueSlider.value = 0.5
         blueSlider.minimumTrackTintColor = .systemBlue
     }
     
@@ -68,6 +90,10 @@ class ViewController: UIViewController {
             blue: CGFloat(blueSlider.value),
             alpha: 1
         )
+    }
+    
+    private func showNameOfUserColor() {
+        userColorLabel.text = "Your color is \(mainView.backgroundColor?.accessibilityName ?? "")"
     }
 }
 
