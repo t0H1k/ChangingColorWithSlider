@@ -22,12 +22,18 @@ class ViewController: UIViewController {
     
     @IBOutlet var userColorLabel: UILabel!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mainView.layer.cornerRadius = 15
+        
+        setValue()
         setupRedSlider()
         setupGreenSlider()
         setupBlueSlider()
+        changeViewBackgroundColor()
         showNameOfUserColor()
     }
 
@@ -66,9 +72,7 @@ class ViewController: UIViewController {
         redSlider.setValue(Float.random(in: 0.00...1), animated: true)
         greenSlider.setValue(Float.random(in: 0.00...1), animated: true)
         blueSlider.setValue(Float.random(in: 0.00...1), animated: true)
-        redLabel.text = String(format: "%.2f", redSlider.value)
-        greenLabel.text = String(format: "%.2f", greenSlider.value)
-        blueLabel.text = String(format: "%.2f", blueSlider.value)
+        setValue()
         changeViewBackgroundColor()
         showNameOfUserColor()
     }
@@ -94,6 +98,12 @@ class ViewController: UIViewController {
             blue: CGFloat(blueSlider.value),
             alpha: 1
         )
+    }
+    
+    private func setValue() {
+        redLabel.text = String(format: "%.2f", redSlider.value)
+        greenLabel.text = String(format: "%.2f", greenSlider.value)
+        blueLabel.text = String(format: "%.2f", blueSlider.value)
     }
     
     private func showNameOfUserColor() {
